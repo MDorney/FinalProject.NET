@@ -1,0 +1,99 @@
+﻿@model Northwind.Models.CustomerEdit
+@{
+    ViewBag.Title = "Your Account";
+}
+<div class="font-md">Your Account</div>
+<div class="well">
+    <form method="post" class="form-horizontal">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyName,
+                    new { htmlAttributes = new { @class = "form-control", placeholder = "Company Name"}})
+                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- Contact Name -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.ContactName, "Contact Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.ContactName, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact Name" } })
+            </div>
+        </div>
+        <!-- Contact Title -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.ContactTitle, "Contact Title", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.ContactTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact Title" } })
+            </div>
+        </div>
+        <!-- Address -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Street Address" } })
+            </div>
+        </div>
+        <!-- City -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.City, new { htmlAttributes = new { @class = "form-control", placeholder = "City" } })
+            </div>
+        </div>
+        <!-- Region -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Region, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Region, new { htmlAttributes = new { @class = "form-control", placeholder = "State/Region" } })
+            </div>
+        </div>
+        <!-- Postal Code -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.PostalCode, "Postal Code", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.PostalCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Postal Code" } })
+            </div>
+        </div>
+        <!-- Country -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Country, new { htmlAttributes = new { @class = "form-control", placeholder = "Country" } })
+            </div>
+        </div>
+        <!-- Phone -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone" } })
+            </div>
+        </div>
+        <!-- Fax -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Fax, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Fax, new { htmlAttributes = new { @class = "form-control", placeholder = "Fax" } })
+            </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+            @Html.LabelFor(c => c.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="font-md"><a href="~/Home/Index"><i class="fa fa-home"></i> Home</a></div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
