@@ -612,7 +612,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Details_Orders">
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
           <End Role="Order_Details" Type="Self.Order_Detail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">

@@ -42,5 +42,3 @@ C:\Users\L117student\Downloads\Northwind\Northwind\obj\Release\Northwind.dll
 C:\Users\L117student\Downloads\Northwind\Northwind\obj\Release\Northwind.pdb
 C:\Users\L117student\Downloads\Northwind\Northwind\bin\EntityFramework.SqlServer.dll
 C:\Users\L117student\Downloads\Northwind\Northwind\bin\EntityFramework.SqlServer.xml
-C:\Users\L117student\Downloads\Northwind\Northwind\bin\AutoMapper.dll
-C:\Users\L117student\Downloads\Northwind\Northwind\bin\AutoMapper.xml

@@ -10,12 +10,9 @@
     <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
 </div>
 
-
-<div class="list-group">
+<ul>
     @foreach (Category c in Model)
     {
-        <a href="~/categories/@c.CategoryID/products" class="list-group-item">
-            <b>@c.CategoryName</b> = @c.Description
-        </a>
+        <li>@c.CategoryName</li>
     }
-</div>
+</ul>
