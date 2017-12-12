@@ -33,7 +33,7 @@ namespace Northwind.Controllers
             ViewBag.id = id;
             using (NORTHWNDEntities db = new NORTHWNDEntities())
             {
-                return View("Product", db.Products.Where(p => p.CategoryID == id).OrderBy(p=>p.ProductName).ToList());
+                return View("Product", db.Products.Where(q => q.CategoryID == id).OrderBy(q=>q.ProductName).ToList());
             }
         }
         //GET: Product Search   
