@@ -28,7 +28,7 @@ namespace Northwind.Controllers
                 CustomerEdit ce = Mapper.Map<CustomerEdit>(customer);
                 return View(ce);
             }
-
+            
 
             //ViewBag.CustomerID = UserAccount.GetUserID();
 

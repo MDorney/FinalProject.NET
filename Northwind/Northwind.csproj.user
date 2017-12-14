@@ -11,7 +11,7 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <NameOfLastUsedPublishProfile>northwind-md - Web Deploy</NameOfLastUsedPublishProfile>
     <WebStackScaffolding_DbContextTypeFullName>Northwind.Models.NORTHWNDEntities</WebStackScaffolding_DbContextTypeFullName>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
