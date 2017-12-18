@@ -84,3 +84,14 @@ a.special {
 .product-row {
     cursor: pointer;
 }
+input.discount {
+    width: 150px !important;
+}
+
+input.qty {
+    width: 100px !important;
+}
+
+a.remove {
+    font-size: .8em;
+}

@@ -52,8 +52,8 @@ namespace Northwind.Controllers
         {
             using (NORTHWNDEntities db = new NORTHWNDEntities())
             {
-                List<Cart> carts = db.Carts.Where(c => c.CustomerID == UserAccount.GetUserID()).ToList<Cart>();
                 Customer cust = db.Customers.Find(UserAccount.GetUserID());
+                List<Cart> carts = db.Carts.Where(c => c.CustomerID == cust.CustomerID).ToList<Cart>();
                 Order o = new Order();
                 o.CustomerID = cust.CustomerID;
                 o.OrderDate = DateTime.Now;
@@ -84,7 +84,9 @@ namespace Northwind.Controllers
                             lineItem.Discount = (decimal)toTest.DiscountPercent;
                         }
                     }
+                    RemoveFromCartAfterOrder(c.CartID);
                 }
+                db.SaveChanges();
             }
             return View("Ordered");
         }
@@ -95,6 +97,15 @@ namespace Northwind.Controllers
             {
                 Cart c = db.Carts.Find(id);
                 db.Carts.Remove(c);
+            }
+        }
+        private void RemoveFromCartAfterOrder(int id)
+        {
+            using (NORTHWNDEntities db = new NORTHWNDEntities())
+            {
+                Cart c = db.Carts.Find(id);
+                db.Carts.Remove(c);
+                db.SaveChanges();
             }
         }
         [Authorize]
@@ -116,5 +127,41 @@ namespace Northwind.Controllers
             }
             
         }
+        public ActionResult Cart()
+        {
+            using (NORTHWNDEntities db = new NORTHWNDEntities())
+            {
+                Customer customer = db.Customers.Find(UserAccount.GetUserID());
+
+                List<Cart> carts = db.Carts.Where(c => c.CustomerID == customer.CustomerID).ToList();
+
+                List<Product> products = new List<Product>();
+
+                foreach (Cart c in carts)
+                {
+                    Product p = db.Products.Find(c.ProductID);
+                    products.Add(p);
+                }
+
+                ViewBag.Products = products;
+
+                return View("Cart", carts);
+            }
+        }
+        [HttpPost]
+        public void UpdateQty(int? id, int? qty)
+        {
+            using (NORTHWNDEntities db = new NORTHWNDEntities())
+            {
+                if (id >= 0 && qty >= 1)
+                {
+                    Cart c = db.Carts.Find(id);
+                    c.Quantity = qty;
+                    db.SaveChanges();
+                }
+
+            }
+        }
+
     }
 }

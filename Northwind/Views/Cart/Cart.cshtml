@@ -1,0 +1,164 @@
+﻿@using Northwind.Models
+@model IEnumerable<Cart>
+@{
+    ViewBag.Title = "Cart";
+
+    List<Product> products = ViewBag.Products;
+}
+
+<h2>Cart</h2>
+<div class="font-md">
+    <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
+</div>
+<form method="post" action="@Url.Action("ConfirmCart","Cart")">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr class="font-md">
+                <th>
+                    ID
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Discount to Apply
+                </th>
+                <th>
+                    Line Total
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="products">
+            @foreach (Cart c in Model)
+            {
+                <tr class="font-md" id="line_@c.CartID">
+                    <td>
+                        @c.ProductID
+                    </td>
+                    <td>
+                        @foreach (Product p in products)
+                        {
+                            if (@c.ProductID.Equals(p.ProductID))
+                            {
+                                @p.ProductName
+                                break;
+                            }
+                        }
+                    </td>
+                    <td id="unit-price_@c.CartID">
+                        @foreach (Product p in products)
+                        {
+                            if (@c.ProductID.Equals(p.ProductID))
+                            {
+                                @p.UnitPrice
+                                break;
+                            }
+                        }
+                    </td>
+                    <td>
+                        <input type="text" class="discount" name="discount_@c.ProductID" value="" maxlength="10" />
+                    </td>
+                    <td>
+                        @{
+                            foreach (Product p in products)
+                            {
+                                if (@c.ProductID.Equals(p.ProductID))
+                                {
+                                    <span id="line-total_@c.CartID">
+                                        @(c.Quantity * @p.UnitPrice)
+                                    </span>
+                                    break;
+                                }
+                            }
+                        }
+                    </td>
+                    <td>
+
+                        <input type="number" class="qty" min="1" id="qty_@c.CartID" name="@c.CartID" max="5000" value="@c.Quantity" />
+                        <br />
+                        <button type="button" class="btn btn-default update-btn" id="@c.CartID" name="update">
+                            Update Qty
+                        </button>
+                    </td>
+                    <td>
+                        <a href="#" class="remove" id="remove_@c.CartID">Remove</a>
+                    </td>
+                </tr>
+
+                            }
+        </tbody>
+    </table>
+    <br />
+    <button type="submit" class="btn btn-primary btn-lg">Finish Order</button>
+</form>
+<br />
+<div class="font-md">
+    <a href="~/Product/Category"><i class="fa fa-list"></i> Product Categories</a>
+</div>
+
+@section scripts {
+    <script>
+
+        $(function () {
+            // Remove cart item
+            $('.remove').on('click', function (e) {
+
+                var id = this.id.split('_')[1];
+                var URL = "@Url.Content("~")Cart/RemoveFromCart";
+
+                //AJAX Request
+                $.ajax({
+                    type: "POST",
+                    url: URL,
+                    data: {id: id},
+                    success: function () {
+                        $('#line_' + id).fadeOut(1000);
+                    },
+                    error: function (xhr, textstatus, thrownerror, data) {
+                        alert("error: " + thrownerror);
+                    }
+                })                 
+
+            });
+
+            //update qty for cart item
+            $('.update-btn').on('click', function () {
+
+                var id = this.id;
+                var qty = $('#qty_' + this.id).val();
+                var URL = "@Url.Content("~")Cart/UpdateQty";
+
+                //AJAX
+                $.ajax({
+                    type: "POST",
+                    url: URL,
+                    data: {
+                        id: id,
+                        qty: qty
+                    },
+                    success: function () {
+                        $('#' + id).addClass("btn-success");
+
+                        var newLineTotal = (parseFloat(qty) * parseFloat($('#unit-price_' + id).html())).toFixed(4); 
+
+                        $('#line-total_' + id).html(newLineTotal);
+                    },
+                    error: function (xhr, textstatus, thrownerror, data) {
+                        alert("error: " + thrownerror);
+                        $('#' + id).addClass("btn-danger");
+                    }
+                })
+
+            });
+
+    });
+
+    </script>
+}

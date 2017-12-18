@@ -206,6 +206,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\chai.png" />
+    <Content Include="Images\Condiments.png" />
+    <Content Include="Images\Confections.png" />
+    <Content Include="Images\Dairy.png" />
+    <Content Include="Images\Drinks.jpg" />
+    <Content Include="Images\pie.png" />
+    <Content Include="Images\SchoggiSchokolade.png" />
     <Content Include="Index.html" />
     <Content Include="Models\NorthwindMOdel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -260,10 +267,11 @@
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Home\SignedOut.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Cart\Ordered.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
